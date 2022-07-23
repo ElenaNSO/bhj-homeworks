@@ -17,13 +17,11 @@ class Game {
   }
 
   registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+    document.addEventListener('keydown', (event) => {
+      let keyDounWhat = event.key.charCodeAt();
+      (String.fromCharCode(keyDounWhat).toLowerCase() === this.currentSymbol.textContent.toLowerCase()) ? this.success() : this.fail();
+    })
+
   }
 
   success() {
@@ -83,6 +81,28 @@ class Game {
     this.wordElement.innerHTML = html;
 
     this.currentSymbol = this.wordElement.querySelector('.symbol_current');
+  }
+
+  reverseTimer(){
+    let intervalId = null;
+    const countSecond = document.getElementById("timer");
+    let hourMinutes = '00:00:';
+    let secondString = countSecond.textContent;
+    const countChairs = this.wordElement.childNodes.length * 1000;
+    function countTimer() {
+    
+        if(secondString > 0){
+            secondString -= 1;
+            let countSecondTextContent = hourMinutes + secondString.toString().padStart(2,0);
+            countSecond.textContent = countSecondTextContent;
+        }
+        else{
+            clearTimeout(intervalId);  
+            alert("Вы победили в конкурсе");
+        }
+    } 
+
+    intervalId = setInterval(countTimer, countChairs);
   }
 }
 
