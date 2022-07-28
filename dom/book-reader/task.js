@@ -5,8 +5,8 @@ const CHOICE_BACKGROUND = Array.from(document.querySelectorAll('.book__control_b
 
 const BOOK_CONTENT = document.querySelectorAll('.book__content');//контент
 
-//функция замены цвета
-function ChoiceFontSize(element) {//обнулили активный элемент
+//функция замены размера
+function choiceFontSize(element) {//обнулили активный элемент
     CHOICE_FONT_SIZE.forEach(el => {
         el.classList.remove ('font-size_active');
         
@@ -38,7 +38,7 @@ function ChoiceFontSize(element) {//обнулили активный элеме
 }
 
 //функция замены цвета текста
-function ChoiseColor(element){
+function choiseColor(element){
     for (let i=0; i<CHOICE_COLOR[0].children.length; i++){
         if(CHOICE_COLOR[0].children[i].classList.contains('color')){
             CHOICE_COLOR[0].children[i].classList.remove ('color_active');  
@@ -74,7 +74,7 @@ function ChoiseColor(element){
 }
 
 //функция замены цвета фона
-function ChoiseBackground(element){
+function choiseBackground(element){
     for (let i=0; i<CHOICE_BACKGROUND[0].children.length; i++){
         if(CHOICE_BACKGROUND[0].children[i].classList.contains('color')){
             CHOICE_BACKGROUND[0].children[i].classList.remove ('color_active');  
@@ -113,13 +113,13 @@ function ChoiseBackground(element){
 CHOICE.forEach(element => {
     element.addEventListener('click', element => {
      if(element.target.parentElement.classList.contains('book__control_font-size')) {
-         ChoiceFontSize(element.target);
+         choiceFontSize(element.target);
      } 
      if(element.target.parentElement.classList.contains('book__control_color')){
-        ChoiseColor(element.target);
+        choiseColor(element.target);
      }
      if(element.target.parentElement.classList.contains('book__control_background')){
-        ChoiseBackground(element.target);
+        choiseBackground(element.target);
     }
      element.preventDefault();
     })
