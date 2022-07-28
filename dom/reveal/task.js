@@ -2,22 +2,12 @@ const REVAL_VISIBLE = document.querySelectorAll('.reveal');
 
 function isVisible (el){
     const {top, bottom} = el.getBoundingClientRect()
-    if(bottom < 0) {
-        return false;
-    }
-    if(top > window.innerHeight){
-        return false;
-    }
-    return true;
+    return !(bottom < 0 || top > window.innerHeight);
 }
 
 setInterval(() => {
     REVAL_VISIBLE.forEach(element => {
-        if(isVisible(element)) {
-            element.classList.add('reveal_active');
-            console.log(element) 
-        } 
-                 
+        (isVisible(element)) ? element.classList.add('reveal_active'): element.classList.remove('reveal_active');        
     },10000);
     
 })
