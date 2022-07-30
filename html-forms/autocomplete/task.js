@@ -6,12 +6,13 @@ class Autocomplete {
     this.list = container.querySelector( '.autocomplete__list' );
     this.valueContainer = container.querySelector( '.autocomplete__value' );
     this.valueElement = container.querySelector( '.autocomplete__text-content' );
-
+    
     this.registerEvents();
   }
 
   registerEvents() {
     this.valueContainer.addEventListener( 'click', e => {
+
       this.searchInput.classList.add( 'autocomplete__search_active' );
       this.list.classList.add( 'autocomplete__list_active' );
       this.searchInput.value = this.valueElement.textContent.trim();
@@ -21,7 +22,10 @@ class Autocomplete {
     });
 
 
-    this.searchInput.addEventListener( 'input', e => this.onSearch());
+    this.searchInput.addEventListener( 'input', e => {
+      e.stopPropagation()//
+      this.onSearch()
+    });
 
     this.list.addEventListener( 'click', e => {
       const { target } = e;
@@ -66,27 +70,17 @@ class Autocomplete {
 
     this.list.innerHTML = html.join('');
   }
-
+  
   getMatches( text ) {
-    /*
-      TODO: этот метод нужно дописать
-      text - фраза, которую вводят в поле поиска
-      Метод должен вернуть массив.
+    let massSelect = [];
 
-      Он формируется на основе списка опций select-элемента (this.input)
-      Подходящие опции - те, чей текст содержит то, что есть в аргументе text
-      Необходимо вернуть массив объектов со свойствами:
-      {
-        text: 'Содержимое <option>',
-        value: 'Содержимое атрибута value'
+    Array.from(this.input.options).forEach(element => {
+      if(element.text.includes(text) ){
+        massSelect.push({text:element.text, value:element.value})
       }
-    */
-    return [
-      {
-        text: 'Чубакка',
-        value: '1'
-      }
-    ];
+    });
+
+    return massSelect;
   }
 }
 
