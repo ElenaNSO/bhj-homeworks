@@ -28,4 +28,3 @@ MODAL.addEventListener('click', event => {
         document.cookie = encodeURIComponent(key) + '=' + encodeURIComponent(value) + 'max-age=3600';           //3600 сек хранится
     }
 })
-
