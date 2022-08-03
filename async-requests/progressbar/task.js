@@ -33,7 +33,6 @@ form.addEventListener('submit', function(e) {
         xhr.onerror = function(){
               alert('Проверьте соединение с интернетом!');
             };
-            
         xhr.send(formData);
       }
     })
