@@ -6,10 +6,9 @@ const storeName = localStorage.getItem('text');
         textArea.textContent = storeName;
     }
 
-    textArea.addEventListener('change', event => {
-
-    const textTextArea = textArea.value;
-    localStorage.setItem('text', textTextArea);
+    textArea.addEventListener('input', event => {
+        const textTextArea = textArea.value;
+        localStorage.setItem('text', textTextArea);
 })
 
 buttonTextArea.addEventListener('click', event => {
